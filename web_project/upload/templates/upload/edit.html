@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Edit your photo</h1>
+    <b></b>
+    <p>your photo:</p>
+    <p>width = {{ max_width }} and height = {{ max_height }}
+    </p>
+    <form action="/upload/edit/{{ id }}/crop/"   method="post">{% csrf_token %}
+        <button type="submit">crop</button><br>
+        Left  : <input type="number" name="Left" value="0" max="{{ max_width }}" min='0'><br>
+        Upper : <input type="number" name="Upper" value="0" max="{{ max_height }}" min='0'><br>
+        Right : <input type="number" name="Right" value="0" max="{{ max_width }}" min='0'><br>
+        Lower : <input type="number" name="Lower" value="0" max="{{ max_height }}" min='0'>
+    </form>
+    <p></p>
+    <form action="/upload/edit/{{ id }}/resize/" method="post">{% csrf_token %}
+        <button type="submit">resize</button><br>
+        width: <input type="number" name="width" value="0" min='0'><br>
+        height: <input type="number" name="height" value="0" min='0'><br>
+    </form>
+    <p></p>
+    <form action="/upload/edit/{{ id }}/rotate/" method="post">{% csrf_token %}
+        <button type="submit">rotate</button><br>
+        degree: <input type="number" name="degree" value="0"><br>
+    </form>
+    <p></p>    
+    <form action="/upload/edit/{{ id }}/black-and-white/">{% csrf_token %}
+        <button type="submit">black and white</button>
+    </form>
+    <p></p>
+    <form action="/upload/edit/{{ id }}/success/">{% csrf_token %}
+        <button type="submit">share</button>
+    </form>
+    <p></p>
+    <img src="{{ url }}" alt="">
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Shared Photos</h1>
+    {% for photo in photos %}
+        {% if photo.others %}
+            <img src="{{ photo.shared_photos.url }}" alt="">
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
