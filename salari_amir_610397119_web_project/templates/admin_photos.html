@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <form action="/accounts/logout/" method="post">{% csrf_token %}
+    <button type="submit">log out</button>
+    </form>
+    <p></p>
+    <ul>
+    {% for session , photos in  all.items %}      
+        <li><h1>{{ forloop.counter }}</h1></li>
+        {% for photo in  photos  %}
+            <img src="{{  photo.shared_photos.url  }}" alt="" srcset=""><br>
+            <p></p>
+            <form action="/delete/{{ photo.id }}/" method="post">{% csrf_token %}
+                <button type="submit">delete</button>
+                
+            </form><br>
+            {% if not photo.others %}
+                <b>Deleted from others</b>
+                <i class="material-icons">arrow_upward</i>
+            {% endif %}
+            <hr>
+        {% endfor %}    
+    {% endfor %}
+    </ul>
+</body>
+</html>
